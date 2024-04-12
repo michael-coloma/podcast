@@ -22,7 +22,26 @@ module.exports = (env, argv) => {
           use: "ts-loader",
         },
         {
+          test: /\.module\.css$/,
+          use: [
+            isDevelopment ? "style-loader" : MiniCssExtractPlugin.loader,
+            {
+              loader: "css-loader",
+              options: {
+                modules: {
+                  mode: "local",
+                  localIdentName: isDevelopment
+                    ? "[path][name]__[local]--[hash:base64:5]"
+                    : "[hash:base64:5]",
+                },
+                importLoaders: 1,
+              },
+            },
+          ],
+        },
+        {
           test: /\.css$/,
+          exclude: /\.module\.css$/,
           use: [
             isDevelopment ? "style-loader" : MiniCssExtractPlugin.loader,
             "css-loader",
@@ -39,20 +58,20 @@ module.exports = (env, argv) => {
         template: "./public/index.html",
         filename: "index.html",
       }),
-      isDevelopment ? undefined : new MiniCssExtractPlugin(),
-    ].filter(Boolean),
+      new MiniCssExtractPlugin({
+        filename: isDevelopment ? "[name].css" : "[name].[contenthash].css",
+        chunkFilename: isDevelopment ? "[id].css" : "[id].[contenthash].css",
+      }),
+    ],
     devServer: {
-      // static: path.join(__dirname, "dist"),
-      // contentBase: path.join(__dirname, "public"),
-      //app.use(express.static(path.join(__dirname, 'public')));
       static: {
-        directory: path.join(__dirname, "public"), // Servir desde el directorio public
+        directory: path.join(__dirname, "public"), // Serve from the public directory
       },
       compress: true,
       port: 3000,
       hot: true,
       open: true,
-      historyApiFallback: true,
+      historyApiFallback: true, // This ensures that all URLs fall back to index.html, helpful for SPA routing
     },
   };
 };
