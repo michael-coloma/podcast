@@ -1,0 +1,15 @@
+.container {
+  display: flex;
+  background-color: var(--main-blue);
+  border-radius: 10px;
+  justify-content: center;
+  align-items: center;
+  width: 45px;
+  height: 23px;
+}
+
+.number {
+  color: white;
+  font-size: 14pt;
+  font-weight: bold;
+}

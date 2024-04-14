@@ -1,9 +1,10 @@
 import React, { Fragment, useEffect, useState } from "react";
-import { Podcast } from "../../../../core/domain/entities/podcast";
 import Header from "../components/Header";
 import PodcastCard from "../components/PodcastCard";
-import * as styles from "./Podcasts.module.css";
 import { useTopPodcasts } from "../hooks/useTopPodcasts";
+import Filter from "../components/Filter";
+
+import * as styles from "./Podcasts.module.css";
 
 const Podcasts: React.FC = () => {
   const { podcasts, error, isLoading, isError } = useTopPodcasts();
@@ -23,6 +24,7 @@ const Podcasts: React.FC = () => {
   return (
     <>
       <Header />
+      <Filter />
       <div className={styles.podcastsList}>
         {podcasts?.map(({ id, title, author, imageUrl }) => (
           <PodcastCard
