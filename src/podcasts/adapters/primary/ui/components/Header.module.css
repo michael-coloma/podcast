@@ -1,0 +1,18 @@
+.container {
+  display: flex;
+}
+.header {
+  width: var(--screen-width);
+  color: var(--main-blue);
+  font-size: 16pt;
+  text-decoration: none;
+  font-weight: bold;
+  border-bottom: 2px solid var(--main-gray);
+  margin-bottom: 15px;
+  padding-bottom: 8px;
+}
+
+.header:hover,
+.header:active {
+  text-decoration: none;
+}
