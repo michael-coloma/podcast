@@ -8,6 +8,7 @@ import * as styles from "./Podcasts.module.css";
 
 const Podcasts: React.FC = () => {
   const { podcasts, error, isLoading, isError } = useTopPodcasts();
+  const [valueFilter, setValueFilter] = useState<string>("");
 
   if (isLoading) {
     return <div>Loading podcasts...</div>;
@@ -24,17 +25,23 @@ const Podcasts: React.FC = () => {
   return (
     <>
       <Header />
-      <Filter />
+      <Filter onChange={setValueFilter} />
       <div className={styles.podcastsList}>
-        {podcasts?.map(({ id, title, author, imageUrl }) => (
-          <PodcastCard
-            key={id}
-            id={id}
-            title={title}
-            author={author}
-            imageUrl={imageUrl}
-          />
-        ))}
+        {podcasts
+          .filter(
+            (podcast) =>
+              podcast.title.toLowerCase().includes(valueFilter.toLowerCase()) ||
+              podcast.author.toLowerCase().includes(valueFilter.toLowerCase())
+          )
+          .map(({ id, title, author, imageUrl }) => (
+            <PodcastCard
+              key={id}
+              id={id}
+              title={title}
+              author={author}
+              imageUrl={imageUrl}
+            />
+          ))}
       </div>
     </>
   );
