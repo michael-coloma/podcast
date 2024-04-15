@@ -6,7 +6,7 @@ describe("Header Test", () => {
   it("shows exist header", async () => {
     const { getByText } = render(
       <Router>
-        <Header />
+        <Header isLoading={true} />
       </Router>
     );
     expect(getByText("Podcaster")).toBeDefined();

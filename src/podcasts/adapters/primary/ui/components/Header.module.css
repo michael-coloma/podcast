@@ -1,18 +1,19 @@
 .container {
   display: flex;
-}
-.header {
   width: var(--screen-width);
-  color: var(--main-blue);
-  font-size: 16pt;
-  text-decoration: none;
-  font-weight: bold;
   border-bottom: 2px solid var(--main-gray);
   margin-bottom: 15px;
   padding-bottom: 8px;
 }
+.title {
+  text-decoration: none;
+  font-size: 16pt; 
+  font-weight: bold;
+  color: var(--main-blue);
+}
 
-.header:hover,
-.header:active {
+.title:hover,
+.title:active {
   text-decoration: none;
 }
+
