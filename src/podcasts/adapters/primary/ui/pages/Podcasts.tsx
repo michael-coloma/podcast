@@ -5,10 +5,17 @@ import { useTopPodcasts } from "../hooks/useTopPodcasts";
 import Filter from "../components/Filter";
 
 import * as styles from "./Podcasts.module.css";
+import { Podcast } from "../../../../core/domain/entities/podcast";
 
 const Podcasts: React.FC = () => {
   const { podcasts, error, isLoading, isError } = useTopPodcasts();
-  const [valueFilter, setValueFilter] = useState<string>("");
+  const [podcastsFiltered, setPodcastsFiltered] = useState<Podcast[]>([]);
+
+  useEffect(() => {
+    if (isLoading || !isError) {
+      setPodcastsFiltered(podcasts);
+    }
+  }, [podcasts, isLoading, isError]);
 
   if (isLoading) {
     return <div>Loading podcasts...</div>;
@@ -25,23 +32,23 @@ const Podcasts: React.FC = () => {
   return (
     <>
       <Header />
-      <Filter onChange={setValueFilter} />
+      <Filter
+        data={podcasts}
+        byFields={["title", "author"]}
+        onDataFiltered={(podcastsFiltered) =>
+          setPodcastsFiltered(podcastsFiltered)
+        }
+      />
       <div className={styles.podcastsList}>
-        {podcasts
-          .filter(
-            (podcast) =>
-              podcast.title.toLowerCase().includes(valueFilter.toLowerCase()) ||
-              podcast.author.toLowerCase().includes(valueFilter.toLowerCase())
-          )
-          .map(({ id, title, author, imageUrl }) => (
-            <PodcastCard
-              key={id}
-              id={id}
-              title={title}
-              author={author}
-              imageUrl={imageUrl}
-            />
-          ))}
+        {podcastsFiltered.map(({ id, title, author, imageUrl }) => (
+          <PodcastCard
+            key={id}
+            id={id}
+            title={title}
+            author={author}
+            imageUrl={imageUrl}
+          />
+        ))}
       </div>
     </>
   );
