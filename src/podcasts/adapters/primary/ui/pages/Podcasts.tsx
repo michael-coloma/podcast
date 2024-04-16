@@ -12,7 +12,7 @@ const Podcasts: React.FC = () => {
   const [podcastsFiltered, setPodcastsFiltered] = useState<Podcast[]>([]);
 
   useEffect(() => {
-    if (isLoading || !isError) {
+    if (!isLoading && !isError && podcasts) {
       setPodcastsFiltered(podcasts);
     }
   }, [podcasts, isLoading, isError]);
