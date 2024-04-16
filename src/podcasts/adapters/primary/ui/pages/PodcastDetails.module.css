@@ -41,7 +41,7 @@
 
 .containerRow {
   display: flex;
-  height: 42px;
+  min-height: 42px;
   max-height: 50px;
   align-items: center;
   box-shadow: 0px -1px 0px rgba(0, 0, 0, 0.2);
