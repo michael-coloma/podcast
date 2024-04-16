@@ -2,12 +2,13 @@ import React, { useEffect, useState } from "react";
 import { useParams, Link } from "react-router-dom";
 import { usePodcastDetail } from "../hooks/usePodcastDetails";
 import Header from "../components/Header";
-
-import * as styles from "./PodcastDetails.module.css";
 import {
   convertFormatZuluToFormatDateView,
   convertMilisecondstoFormatHoursMinutes,
 } from "../utils/utilsTimer";
+import PodcastDetailLateral from "../components/PodcastDetaillsLateral";
+
+import * as styles from "./PodcastDetails.module.css";
 
 const PodcastDetail = () => {
   const { podcastId } = useParams();
@@ -21,7 +22,9 @@ const PodcastDetail = () => {
       <Header isLoading={isLoading} />
       {!isError && !isLoading && podcastDetails && (
         <div className={styles.container}>
-          <div className={styles.lateral}>Lateral WIP</div>
+          <div className={styles.containerLateral}>
+            <PodcastDetailLateral />
+          </div>
           <div className={styles.containerEpisodes}>
             <div className={`${styles.totalEpisodes} ${styles.page}`}>
               Episodes: {podcastDetails.numberEpisodes}

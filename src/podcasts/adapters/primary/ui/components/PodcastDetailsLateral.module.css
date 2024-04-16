@@ -1,0 +1,46 @@
+.page {
+  height: max-content;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  position: relative;
+  padding: 20px;
+  width: 280px;
+}
+
+.imageContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 250px;
+}
+
+.containerTitleAuthor {
+  display: flex;
+  justify-content: center;
+
+  flex-direction: column;
+  height: 100px;
+  border-top: 1px solid lightgray;
+  border-bottom: 1px solid lightgray;
+}
+
+.title {
+  margin-left: 16px;
+  font-size: 14pt;
+  color: black;
+  font-weight: bold;
+}
+.author {
+  margin-left: 16px;
+  font-size: 12pt;
+}
+
+.containerDescription {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+}
+.description {
+  margin-top: 16px;
+  background-color: #f9f9f9;
+}
