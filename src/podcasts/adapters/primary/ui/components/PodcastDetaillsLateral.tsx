@@ -1,17 +1,20 @@
 import React from "react";
 import * as styles from "./PodcastDetailsLateral.module.css";
+import { useSelector } from "react-redux";
+import { RootState } from "../../../secondary/redux/store";
 
 const PodcastDetailLateral = ({}) => {
-  const dataMock = {
-    id: 1,
-    title: "tituli",
-    author: "author",
-    description: "descripfasdfdsfsafsafsa",
-    imageUrl:
-      "https://is1-ssl.mzstatic.com/image/thumb/Podcasts211/v4/67/ca/18/67ca1846-f942-2a04-aeb1-8e5652d9d6c5/mza_10646182707668815111.jpg/170x170bb.png",
-  };
+  const selectedPodcast = useSelector(
+    (state: RootState) => state.podcastDetails.selectedPodcast
+  );
 
-  const { id, imageUrl, author, title, description } = dataMock;
+  const { id, imageUrl, author, title, description } = selectedPodcast || {
+    id: 1,
+    title: "",
+    author: "",
+    description: "",
+    imageUrl: "",
+  };
 
   return (
     <div key={id} className={styles.page}>

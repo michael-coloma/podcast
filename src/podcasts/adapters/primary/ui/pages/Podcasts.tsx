@@ -30,15 +30,18 @@ const Podcasts: React.FC = () => {
             }
           />
           <div className={styles.podcastsList}>
-            {podcastsFiltered.map(({ id, title, author, imageUrl }) => (
-              <PodcastCard
-                key={id}
-                id={id}
-                title={title}
-                author={author}
-                imageUrl={imageUrl}
-              />
-            ))}
+            {podcastsFiltered.map(
+              ({ id, title, author, imageUrl, description }) => (
+                <PodcastCard
+                  key={id}
+                  id={id}
+                  title={title}
+                  author={author}
+                  imageUrl={imageUrl}
+                  description={description}
+                />
+              )
+            )}
           </div>
         </>
       )}

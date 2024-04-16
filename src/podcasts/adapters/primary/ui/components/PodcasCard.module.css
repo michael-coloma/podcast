@@ -10,10 +10,6 @@
   display: flex;
 }
 
-.link {
-  text-decoration: none;
-}
-
 .imageContainer {
   width: 100px;
   height: 100px;

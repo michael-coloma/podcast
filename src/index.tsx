@@ -3,6 +3,9 @@ import ReactDOM from "react-dom/client";
 import { PodcastsRouter as App } from "./podcasts/adapters/primary/ui/PodcastsRouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import reportWebVitals from "./reportWebVitals";
+import { Provider } from "react-redux";
+import { store } from "./podcasts/adapters/secondary/redux/store";
+
 import "./index.css";
 
 const queryClient = new QueryClient({
@@ -19,7 +22,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <App />
+      <Provider store={store}>
+        <App />
+      </Provider>
     </QueryClientProvider>
   </React.StrictMode>
 );
