@@ -1,0 +1,51 @@
+.page, .pagePlayer {
+  height: max-content;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  border-radius: 10px;
+  position: relative;
+  padding: 15px;
+}
+
+.pagePlayer{
+  padding: 15px 0px 0px 0px;
+  border-radius: 0px;
+}
+
+.container {
+  display: flex;
+  margin-top: 32px;
+  margin-left: 10px;
+  margin-right: 15px;
+}
+
+.containerLateral {
+  flex: 2;
+}
+.containerEpisodes{
+  flex: 3;
+  margin-left: 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 30pt;
+}
+
+.paragraph {
+  margin-top: 16px;
+  background-color: #f9f9f9;
+  font-style: italic;
+}
+
+.containerAudio{
+  display: flex;
+  flex-direction: column;
+  margin-top: 24px;
+}
+
+.player{
+  background-color: #F1F3F4;
+  min-width: 200px;
+  width: auto;
+}
