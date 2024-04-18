@@ -1,4 +1,5 @@
 import React from "react";
+import DOMPurify from "dompurify";
 
 import Header from "../components/Header";
 import PodcastDetailLateral from "../components/PodcastDetaillsLateral";
@@ -12,6 +13,10 @@ const EpisodeDetails = () => {
     (state: RootState) => state.episodeDetails.selectedEpisode
   );
 
+  const cleanDescription = DOMPurify.sanitize(
+    selectedEpisode?.description || ""
+  );
+
   return (
     <>
       <Header isLoading={false} />
@@ -22,10 +27,11 @@ const EpisodeDetails = () => {
         </div>
         <div className={`${styles.containerEpisodes} ${styles.page}`}>
           <span className={styles.title}>{selectedEpisode?.title}</span>
-          <span className={styles.paragraph}>
-            {selectedEpisode?.description}
-          </span>
-          <span className={styles.paragraph}>This episode is sponsered by</span>
+          <span
+            className={styles.paragraph}
+            dangerouslySetInnerHTML={{ __html: cleanDescription }}
+          />
+
           <div className={`${styles.containerAudio} ${styles.pagePlayer}`}>
             <audio controls className={styles.player}>
               <source src={selectedEpisode?.audioUrl} type="audio/mp3" />
