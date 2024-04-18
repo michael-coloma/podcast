@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import DOMPurify from "dompurify";
 
 import Header from "../components/Header";
@@ -13,32 +13,36 @@ const EpisodeDetails = () => {
     (state: RootState) => state.episodeDetails.selectedEpisode
   );
 
+  const isLoading = selectedEpisode === null;
+
   const cleanDescription = DOMPurify.sanitize(
     selectedEpisode?.description || ""
   );
 
   return (
     <>
-      <Header isLoading={false} />
+      <Header isLoading={isLoading} />
 
-      <div className={styles.container}>
-        <div className={styles.containerLateral}>
-          <PodcastDetailLateral enableLinksPodcastDetails={true} />
-        </div>
-        <div className={`${styles.containerEpisodes} ${styles.page}`}>
-          <span className={styles.title}>{selectedEpisode?.title}</span>
-          <span
-            className={styles.paragraph}
-            dangerouslySetInnerHTML={{ __html: cleanDescription }}
-          />
+      {!isLoading && (
+        <div className={styles.container}>
+          <div className={styles.containerLateral}>
+            <PodcastDetailLateral enableLinksPodcastDetails={true} />
+          </div>
+          <div className={`${styles.containerEpisodes} ${styles.page}`}>
+            <span className={styles.title}>{selectedEpisode?.title}</span>
+            <span
+              className={styles.paragraph}
+              dangerouslySetInnerHTML={{ __html: cleanDescription }}
+            />
 
-          <div className={`${styles.containerAudio} ${styles.pagePlayer}`}>
-            <audio controls className={styles.player}>
-              <source src={selectedEpisode?.audioUrl} type="audio/mp3" />
-            </audio>
+            <div className={`${styles.containerAudio} ${styles.pagePlayer}`}>
+              <audio controls className={styles.player}>
+                <source src={selectedEpisode?.audioUrl} type="audio/mp3" />
+              </audio>
+            </div>
           </div>
         </div>
-      </div>
+      )}
     </>
   );
 };
