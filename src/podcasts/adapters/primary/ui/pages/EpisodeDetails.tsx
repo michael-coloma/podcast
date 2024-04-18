@@ -18,7 +18,7 @@ const EpisodeDetails = () => {
 
       <div className={styles.container}>
         <div className={styles.containerLateral}>
-          <PodcastDetailLateral />
+          <PodcastDetailLateral enableLinksPodcastDetails={true} />
         </div>
         <div className={`${styles.containerEpisodes} ${styles.page}`}>
           <span className={styles.title}>{selectedEpisode?.title}</span>
