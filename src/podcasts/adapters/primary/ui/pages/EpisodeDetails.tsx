@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
 import DOMPurify from "dompurify";
 
 import Header from "../components/Header";
@@ -12,9 +12,7 @@ const EpisodeDetails = () => {
   const selectedEpisode = useSelector(
     (state: RootState) => state.episodeDetails.selectedEpisode
   );
-
-  const isLoading = selectedEpisode === null;
-
+  const [isLoading, setIsLoading] = useState(true);
   const cleanDescription = DOMPurify.sanitize(
     selectedEpisode?.description || ""
   );
@@ -23,26 +21,28 @@ const EpisodeDetails = () => {
     <>
       <Header isLoading={isLoading} />
 
-      {!isLoading && (
-        <div className={styles.container}>
-          <div className={styles.containerLateral}>
-            <PodcastDetailLateral enableLinksPodcastDetails={true} />
-          </div>
-          <div className={`${styles.containerEpisodes} ${styles.page}`}>
-            <span className={styles.title}>{selectedEpisode?.title}</span>
-            <span
-              className={styles.paragraph}
-              dangerouslySetInnerHTML={{ __html: cleanDescription }}
-            />
+      <div className={styles.container}>
+        <div className={styles.containerLateral}>
+          <PodcastDetailLateral enableLinksPodcastDetails={true} />
+        </div>
+        <div className={`${styles.containerEpisodes} ${styles.page}`}>
+          <span className={styles.title}>{selectedEpisode?.title}</span>
+          <span
+            className={styles.paragraph}
+            dangerouslySetInnerHTML={{ __html: cleanDescription }}
+          />
 
-            <div className={`${styles.containerAudio} ${styles.pagePlayer}`}>
-              <audio controls className={styles.player}>
-                <source src={selectedEpisode?.audioUrl} type="audio/mp3" />
-              </audio>
-            </div>
+          <div className={`${styles.containerAudio} ${styles.pagePlayer}`}>
+            <audio
+              onLoadedData={() => setIsLoading(false)}
+              controls
+              className={styles.player}
+            >
+              <source src={selectedEpisode?.audioUrl} type="audio/mp3" />
+            </audio>
           </div>
         </div>
-      )}
+      </div>
     </>
   );
 };
