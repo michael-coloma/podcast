@@ -3,8 +3,7 @@ import axios from "axios";
 const API_BASE_URL = "https://api.allorigins.win/get?url=";
 
 export class PodcastsApiClient {
-  private readonly topPodcastsUrl =
-    "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json";
+  private readonly topPodcastsUrl = "https://itunes.apple.com/us/rss/toppodcasts/limit=100/genre=1310/json";
 
   private podcastDetailUrl(podcastsId: string) {
     return `https://itunes.apple.com/lookup?id=${podcastsId}&media=podcast&entity=podcastEpisode&limit=20`;
@@ -21,29 +20,19 @@ export class PodcastsApiClient {
   }
 
   async fetchTopPodcasts(): Promise<any[]> {
-    const response = await axios
-      .get(`${API_BASE_URL}${encodeURIComponent(this.topPodcastsUrl)}`)
-      .catch((error) => {
-        console.error(
-          "There is an error with fetchTopPodcasts in PodscastApiClient",
-          error
-        );
-        throw error;
-      });
+    const response = await axios.get(`${API_BASE_URL}${encodeURIComponent(this.topPodcastsUrl)}`).catch((error) => {
+      console.error("There is an error with fetchTopPodcasts in PodscastApiClient", error);
+      throw error;
+    });
 
     return JSON.parse(response.data.contents).feed.entry;
   }
 
   async fetchPodcastDetail(podcastId: string): Promise<any> {
     const response = await axios
-      .get(
-        `${API_BASE_URL}${encodeURIComponent(this.podcastDetailUrl(podcastId))}`
-      )
+      .get(`${API_BASE_URL}${encodeURIComponent(this.podcastDetailUrl(podcastId))}`)
       .catch((error) => {
-        console.error(
-          "There is an error with fetchPodcastDetails in PodscastApiClient",
-          error
-        );
+        console.error("There is an error with fetchPodcastDetails in PodscastApiClient", error);
         throw error;
       });
 
