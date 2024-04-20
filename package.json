@@ -18,6 +18,7 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
+    "lint": "eslint --fix src/",
     "start": "webpack serve --mode development --open",
     "build": "webpack --mode production",
     "test": "jest --verbose --collectCoverage=false --runInBand",
@@ -49,8 +50,15 @@
     "@types/jest": "^29.5.12",
     "@types/react": "^18.2.75",
     "@types/react-dom": "^18.2.24",
+    "@typescript-eslint/eslint-plugin": "^7.7.0",
+    "@typescript-eslint/parser": "^7.7.0",
     "axios-mock-adapter": "^1.22.0",
     "css-loader": "^7.1.1",
+    "eslint": "^8.56.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-react": "^7.34.1",
+    "eslint-plugin-react-hooks": "^4.6.0",
     "html-webpack-plugin": "^5.6.0",
     "identity-obj-proxy": "^3.0.0",
     "jest": "^29.7.0",
