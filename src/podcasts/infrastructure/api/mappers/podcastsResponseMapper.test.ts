@@ -1,7 +1,7 @@
 import { Podcast } from "../../../core/domain/entities/podcast";
-import { ApiPodcast, mapPodcastResponse } from "./podcastsResponseMapper";
+import { ApiResponsePodcast, mapPodcastResponse } from "./podcastsResponseMapper";
 
-const responseApiPodcasts: ApiPodcast[] = [
+const apiResponsePodcasts: ApiResponsePodcast[] = [
   {
     id: { attributes: { "im:id": "mockId" } },
     title: { label: "mockTitle" },
@@ -23,10 +23,10 @@ const resultMap: Podcast[] = [
 
 describe("podcastsReponseMapper Test", () => {
   it("checks reponse is mapped correctly", () => {
-    expect(mapPodcastResponse(responseApiPodcasts)).toEqual(resultMap);
+    expect(mapPodcastResponse(apiResponsePodcasts)).toEqual(resultMap);
   });
 
   it("checks reponse is mapped incorrectly", () => {
-    expect(mapPodcastResponse(responseApiPodcasts)).not.toEqual([{ ...resultMap[0], title: "unexpectedTitle" }]);
+    expect(mapPodcastResponse(apiResponsePodcasts)).not.toEqual([{ ...resultMap[0], title: "unexpectedTitle" }]);
   });
 });

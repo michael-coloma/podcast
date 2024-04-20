@@ -1,5 +1,5 @@
 import { Podcast } from "../../../core/domain/entities/podcast";
-export interface ApiPodcast {
+export interface ApiResponsePodcast {
   title: {
     label: string;
   };
@@ -17,7 +17,7 @@ export interface ApiPodcast {
   };
 }
 
-export const mapPodcastResponse = (apiPodcasts: ApiPodcast[]): Podcast[] => {
+export const mapPodcastResponse = (apiPodcasts: ApiResponsePodcast[]): Podcast[] => {
   return apiPodcasts.map((apiPodcast) => ({
     id: apiPodcast.id.attributes["im:id"],
     title: apiPodcast.title.label,

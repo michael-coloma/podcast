@@ -1,4 +1,4 @@
-import { PodcastsApiClient } from "./PodcastsApiClient";
+import { ApiResponsePodcastDetails, PodcastsApiClient } from "./PodcastsApiClient";
 import axios from "axios";
 import MockAdapter from "axios-mock-adapter";
 
@@ -30,7 +30,7 @@ const mockPodcastsResponseApi = {
 const mockPodcastId = "123456";
 
 //Actually the result has an formart similar to mockPodcastsResponseApi but to avoid problems i uses JSON.strinfy en the response mocked
-const mockPodcastDetailsResponseApi = {
+const mockPodcastDetailsResponseApi: { resultCount: number; results: ApiResponsePodcastDetails } = {
   resultCount: 21,
   results: [
     {

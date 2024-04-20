@@ -2,7 +2,7 @@ import { Podcast } from "../../../core/domain/entities/podcast";
 import { podcastDetails } from "../../../core/domain/entities/podcastDetails";
 import { IPodcastApi } from "../../../core/domain/ports/podcastsApiPort";
 import { PodcastsApiClient } from "../clients/PodcastsApiClient";
-import { mapPodcastDetail } from "../mappers/podcastDetailReponseMapper";
+import { ApiEpisode, ApiPodcastDetails, mapPodcastDetail } from "../mappers/podcastDetailReponseMapper";
 import { mapPodcastResponse } from "../mappers/podcastsResponseMapper";
 
 export class PodcastAdapter implements IPodcastApi {
@@ -24,6 +24,6 @@ export class PodcastAdapter implements IPodcastApi {
       (itemResponse: { kind: string }) => itemResponse.kind === "podcast-episode",
     );
 
-    return mapPodcastDetail(podcastDetail, episodes);
+    return mapPodcastDetail(podcastDetail as ApiPodcastDetails[], episodes as ApiEpisode[]);
   }
 }

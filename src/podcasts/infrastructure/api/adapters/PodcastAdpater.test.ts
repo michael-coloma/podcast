@@ -1,3 +1,4 @@
+import { ApiResponsePodcastDetails } from "../clients/PodcastsApiClient";
 import { PodcastAdapter } from "./PodcastsAdapter";
 
 describe("PodcastAdapter", () => {
@@ -33,7 +34,7 @@ describe("PodcastAdapter", () => {
   });
 
   it("fetches podcasts Details with adapter successfully", async () => {
-    const mockResponseApiClient = [
+    const mockResponseApiClient: ApiResponsePodcastDetails = [
       {
         kind: "podcast",
         trackCount: 476,
@@ -43,7 +44,6 @@ describe("PodcastAdapter", () => {
         trackId: 1000652324873,
         trackName: "Episode 716",
         releaseDate: "2024-04-13T07:00:00Z",
-        //artistIds: [1535844019],
         trackTimeMillis: 11145000,
         description: "In the latest episode...",
         episodeUrl:

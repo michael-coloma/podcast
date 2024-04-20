@@ -1,7 +1,7 @@
 import { podcastDetails } from "../../../core/domain/entities/podcastDetails";
-import { ApiEpisode, ApiPodcastDetail, mapPodcastDetail } from "./podcastDetailReponseMapper";
+import { ApiEpisode, ApiPodcastDetails, mapPodcastDetail } from "./podcastDetailReponseMapper";
 
-const mockApiPodcastDetail: ApiPodcastDetail[] = [
+const mockApiPodcastDetail: ApiPodcastDetails[] = [
   {
     kind: "podcast",
     trackCount: 100,
@@ -11,7 +11,7 @@ const mockApiPodcastDetail: ApiPodcastDetail[] = [
 const mockApiEpisode: ApiEpisode[] = [
   {
     kind: "podcast-episode",
-    trackId: "trackId",
+    trackId: 1234,
     trackName: "trackName",
     releaseDate: "2024-03-20T16:30:00Z",
     trackTimeMillis: 1102000,
@@ -24,7 +24,7 @@ const mockResultMap: podcastDetails = {
   numberEpisodes: 100,
   episodes: [
     {
-      id: "trackId",
+      id: 1234,
       title: "trackName",
       publicationDate: "2024-03-20T16:30:00Z",
       duration: 1102000,

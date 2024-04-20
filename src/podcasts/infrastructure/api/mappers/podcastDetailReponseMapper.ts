@@ -1,14 +1,14 @@
 import { Episode } from "../../../core/domain/entities/episode";
 import { podcastDetails } from "../../../core/domain/entities/podcastDetails";
 
-export interface ApiPodcastDetail {
+export interface ApiPodcastDetails {
   kind: "podcast";
   trackCount: number;
 }
 
 export interface ApiEpisode {
   kind: "podcast-episode";
-  trackId: string;
+  trackId: number;
   trackName: string;
   releaseDate: string; //FormatZulo: "2024-03-20T16:30:00Z",
   trackTimeMillis: number;
@@ -17,7 +17,7 @@ export interface ApiEpisode {
 }
 
 export const mapPodcastDetail = (
-  apiPodcastDetail: ApiPodcastDetail[], // it should be one element
+  apiPodcastDetail: ApiPodcastDetails[], // it should be one element
   apiEpisodes: ApiEpisode[],
 ): podcastDetails => {
   const episodes: Episode[] = apiEpisodes.map((apiEpisode) => ({
