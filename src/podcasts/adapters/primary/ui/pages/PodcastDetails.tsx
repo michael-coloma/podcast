@@ -2,10 +2,7 @@ import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { usePodcastDetail } from "../hooks/usePodcastDetails";
 import Header from "../components/Header";
-import {
-  convertFormatZuluToFormatDateView,
-  convertMilisecondstoFormatHoursMinutes,
-} from "../utils/utilsTimer";
+import { convertFormatZuluToFormatDateView, convertMilisecondstoFormatHoursMinutes } from "../utils/utilsTimer";
 import PodcastDetailLateral from "../components/PodcastDetaillsLateral";
 import { useDispatch } from "react-redux";
 import { setSelectedEpisode } from "../../../secondary/redux/episodeDetailsSlice";
@@ -17,9 +14,7 @@ const PodcastDetail = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const { podcastDetails, isLoading, isError, error } = usePodcastDetail(
-    podcastId || ""
-  );
+  const { podcastDetails, isLoading, isError, error } = usePodcastDetail(podcastId || "");
 
   return (
     <>
@@ -30,9 +25,7 @@ const PodcastDetail = () => {
             <PodcastDetailLateral />
           </div>
           <div className={styles.containerEpisodes}>
-            <div className={`${styles.totalEpisodes} ${styles.page}`}>
-              Episodes: {podcastDetails.numberEpisodes}
-            </div>
+            <div className={`${styles.totalEpisodes} ${styles.page}`}>Episodes: {podcastDetails.numberEpisodes}</div>
             <table className={`${styles.page} ${styles.containerTable}`}>
               <thead className={styles.headTable}>
                 <tr className={styles.containerRowHead}>
@@ -43,10 +36,7 @@ const PodcastDetail = () => {
               </thead>
               <tbody>
                 {podcastDetails.episodes.map((episode, index) => (
-                  <tr
-                    className={`${styles.containerRow} ${index % 2 === 0 && styles.rowColor}`}
-                    key={index}
-                  >
+                  <tr className={`${styles.containerRow} ${index % 2 === 0 && styles.rowColor}`} key={index}>
                     <td
                       className={styles.columTitle}
                       onClick={() => {
@@ -56,11 +46,7 @@ const PodcastDetail = () => {
                     >
                       {episode.title}
                     </td>
-                    <td className={styles.columDate}>
-                      {convertFormatZuluToFormatDateView(
-                        episode.publicationDate
-                      )}
-                    </td>
+                    <td className={styles.columDate}>{convertFormatZuluToFormatDateView(episode.publicationDate)}</td>
                     <td className={styles.columnDuration}>
                       {convertMilisecondstoFormatHoursMinutes(episode.duration)}
                     </td>
@@ -71,11 +57,7 @@ const PodcastDetail = () => {
           </div>
         </div>
       )}
-      {isError && (
-        <>
-          Error: {error instanceof Error ? error.message : "An error occurred"}
-        </>
-      )}
+      {isError && <>Error: {error instanceof Error ? error.message : "An error occurred"}</>}
     </>
   );
 };

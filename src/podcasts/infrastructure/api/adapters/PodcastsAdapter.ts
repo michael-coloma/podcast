@@ -15,15 +15,13 @@ export class PodcastAdapter implements IPodcastApi {
   }
 
   async fetchPodcastDetail(podcastId: string): Promise<podcastDetails> {
-    const responseApiPodcastDetail =
-      await this.apiClient.fetchPodcastDetail(podcastId);
+    const responseApiPodcastDetail = await this.apiClient.fetchPodcastDetail(podcastId);
 
     const podcastDetail = responseApiPodcastDetail.filter(
-      (itemResponse: { kind: string }) => itemResponse.kind === "podcast"
+      (itemResponse: { kind: string }) => itemResponse.kind === "podcast",
     );
     const episodes = responseApiPodcastDetail.filter(
-      (itemResponse: { kind: string }) =>
-        itemResponse.kind === "podcast-episode"
+      (itemResponse: { kind: string }) => itemResponse.kind === "podcast-episode",
     );
 
     return mapPodcastDetail(podcastDetail, episodes);

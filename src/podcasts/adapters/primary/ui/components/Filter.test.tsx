@@ -17,13 +17,7 @@ const mockData = [
 
 describe("Filter component Test", () => {
   it("checks data is filtered by title 'Podcasts 3' correclty", () => {
-    render(
-      <Filter
-        data={mockData}
-        byFields={["title"]}
-        onDataFiltered={onDataFilteredMock}
-      />
-    );
+    render(<Filter data={mockData} byFields={["title"]} onDataFiltered={onDataFilteredMock} />);
 
     const inputElement = screen.getByPlaceholderText("Filter podcast...");
     fireEvent.change(inputElement, { target: { value: "Podcast 2" } });
@@ -41,13 +35,7 @@ describe("Filter component Test", () => {
   });
 
   it("checks that filter is empty if there are not matches", () => {
-    render(
-      <Filter
-        data={mockData}
-        byFields={["title"]}
-        onDataFiltered={onDataFilteredMock}
-      />
-    );
+    render(<Filter data={mockData} byFields={["title"]} onDataFiltered={onDataFilteredMock} />);
 
     const inputElement = screen.getByPlaceholderText("Filter podcast...");
     fireEvent.change(inputElement, { target: { value: "other podcast" } });

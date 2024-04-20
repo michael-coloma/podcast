@@ -1,4 +1,4 @@
-import React, { useEffect, useLayoutEffect, useRef, useState } from "react";
+import React, { useState } from "react";
 import DOMPurify from "dompurify";
 
 import Header from "../components/Header";
@@ -9,13 +9,9 @@ import { useSelector } from "react-redux";
 import * as styles from "./EpisodeDetails.module.css";
 
 const EpisodeDetails = () => {
-  const selectedEpisode = useSelector(
-    (state: RootState) => state.episodeDetails.selectedEpisode
-  );
+  const selectedEpisode = useSelector((state: RootState) => state.episodeDetails.selectedEpisode);
   const [isLoading, setIsLoading] = useState(true);
-  const cleanDescription = DOMPurify.sanitize(
-    selectedEpisode?.description || ""
-  );
+  const cleanDescription = DOMPurify.sanitize(selectedEpisode?.description || "");
 
   return (
     <>
@@ -27,18 +23,11 @@ const EpisodeDetails = () => {
         </div>
         <div className={`${styles.containerEpisodes} ${styles.page}`}>
           <span className={styles.title}>{selectedEpisode?.title}</span>
-          <span
-            className={styles.paragraph}
-            dangerouslySetInnerHTML={{ __html: cleanDescription }}
-          />
+          <span className={styles.paragraph} dangerouslySetInnerHTML={{ __html: cleanDescription }} />
 
           <div className={`${styles.containerAudio} ${styles.pagePlayer}`}>
-            <audio
-              onLoadedData={() => setIsLoading(false)}
-              controls
-              className={styles.player}
-            >
-              <source src={selectedEpisode?.audioUrl} type="audio/mp3" />
+            <audio onLoadedData={() => setIsLoading(false)} controls className={styles.player}>
+              <source src={selectedEpisode?.audioUrl} type='audio/mp3' />
             </audio>
           </div>
         </div>

@@ -8,13 +8,9 @@ interface PodcastDetailsProps {
   enableLinksPodcastDetails?: boolean;
 }
 
-const PodcastDetailLateral = ({
-  enableLinksPodcastDetails: enableLinkPodcastDetails = false,
-}: PodcastDetailsProps) => {
+const PodcastDetailLateral = ({ enableLinksPodcastDetails: enableLinkPodcastDetails = false }: PodcastDetailsProps) => {
   const navigate = useNavigate();
-  const selectedPodcast = useSelector(
-    (state: RootState) => state.podcastDetails.selectedPodcast
-  );
+  const selectedPodcast = useSelector((state: RootState) => state.podcastDetails.selectedPodcast);
 
   const { id, imageUrl, author, title, description } = selectedPodcast || {
     id: 1,
@@ -30,16 +26,10 @@ const PodcastDetailLateral = ({
         <img src={imageUrl} alt={title} />
       </div>
       <div className={styles.containerTitleAuthor}>
-        <span
-          className={styles.title}
-          onClick={() => enableLinkPodcastDetails && navigate(`/podcast/${id}`)}
-        >
+        <span className={styles.title} onClick={() => enableLinkPodcastDetails && navigate(`/podcast/${id}`)}>
           {title}
         </span>
-        <em
-          className={styles.author}
-          onClick={() => enableLinkPodcastDetails && navigate(`/podcast/${id}`)}
-        >
+        <em className={styles.author} onClick={() => enableLinkPodcastDetails && navigate(`/podcast/${id}`)}>
           by {author}
         </em>
       </div>

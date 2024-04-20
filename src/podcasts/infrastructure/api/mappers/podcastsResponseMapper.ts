@@ -23,8 +23,6 @@ export const mapPodcastResponse = (apiPodcasts: ApiPodcast[]): Podcast[] => {
     title: apiPodcast.title.label,
     author: apiPodcast["im:artist"].label,
     description: apiPodcast.summary.label,
-    imageUrl:
-      apiPodcast["im:image"].find((image) => image.attributes.height === "170") //bigger sizes
-        ?.label || "",
+    imageUrl: apiPodcast["im:image"].find((image) => image.attributes.height === "170")?.label || "", //bigger sizes
   }));
 };

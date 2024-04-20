@@ -7,7 +7,7 @@ describe("Header Test", () => {
     const { getByText } = render(
       <Router>
         <Header isLoading={true} />
-      </Router>
+      </Router>,
     );
     expect(getByText("Podcaster")).toBeDefined();
   });

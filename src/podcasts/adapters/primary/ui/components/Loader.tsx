@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import * as styles from "./Loader.module.css";
 
 interface LoaderProps {
@@ -6,11 +6,7 @@ interface LoaderProps {
 }
 
 const Loader = ({ isLoading }: LoaderProps) => {
-  return isLoading ? (
-    <div data-testid="loader" className={styles.loader} />
-  ) : (
-    <></>
-  );
+  return isLoading ? <div data-testid='loader' className={styles.loader} /> : <></>;
 };
 
 export default Loader;

@@ -23,9 +23,7 @@ describe("PodcastAdapter", () => {
       },
     ];
 
-    jest
-      .spyOn(adapter["apiClient"], "fetchTopPodcasts")
-      .mockResolvedValue(mockResponseApiClient);
+    jest.spyOn(adapter["apiClient"], "fetchTopPodcasts").mockResolvedValue(mockResponseApiClient);
 
     const podcasts = await adapter.fetchTopPodcasts();
 
@@ -53,9 +51,7 @@ describe("PodcastAdapter", () => {
       },
     ];
 
-    jest
-      .spyOn(adapter["apiClient"], "fetchPodcastDetail")
-      .mockResolvedValue(mockResponseApiClient);
+    jest.spyOn(adapter["apiClient"], "fetchPodcastDetail").mockResolvedValue(mockResponseApiClient);
 
     const podcastsDetails = await adapter.fetchPodcastDetail("12345");
 

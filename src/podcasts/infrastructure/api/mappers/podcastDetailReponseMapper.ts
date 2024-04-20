@@ -18,7 +18,7 @@ export interface ApiEpisode {
 
 export const mapPodcastDetail = (
   apiPodcastDetail: ApiPodcastDetail[], // it should be one element
-  apiEpisodes: ApiEpisode[]
+  apiEpisodes: ApiEpisode[],
 ): podcastDetails => {
   const episodes: Episode[] = apiEpisodes.map((apiEpisode) => ({
     id: apiEpisode.trackId,

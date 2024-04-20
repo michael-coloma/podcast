@@ -67,9 +67,7 @@ describe("PodcastsApiClient", () => {
 
   describe("fetchTopPodcasts test", () => {
     it("fetches topPodcasts successfully", async () => {
-      mockAxios
-        .onGet(client.getTopPodcastsUrl())
-        .reply(200, mockPodcastsResponseApi);
+      mockAxios.onGet(client.getTopPodcastsUrl()).reply(200, mockPodcastsResponseApi);
 
       const responseExpected = await client.fetchTopPodcasts();
 
@@ -77,23 +75,15 @@ describe("PodcastsApiClient", () => {
       expect(mockAxios.history.get.length).toBe(1);
       expect(mockAxios.history.get[0].url).toBe(client.getTopPodcastsUrl());
 
-      expect(responseExpected).toEqual(
-        JSON.parse(mockPodcastsResponseApi.contents).feed.entry
-      );
+      expect(responseExpected).toEqual(JSON.parse(mockPodcastsResponseApi.contents).feed.entry);
     });
 
     it("should throw an error when fetching top podcasts fails", async () => {
-      mockAxios
-        .onGet(client.getTopPodcastsUrl())
-        .reply(500, { error: "Internal Server Error" });
+      mockAxios.onGet(client.getTopPodcastsUrl()).reply(500, { error: "Internal Server Error" });
 
-      const consoleErrorSpy = jest
-        .spyOn(console, "error")
-        .mockImplementation(() => "error");
+      const consoleErrorSpy = jest.spyOn(console, "error").mockImplementation(() => "error");
 
-      await expect(client.fetchTopPodcasts()).rejects.toThrowError(
-        "Request failed with status code 500"
-      );
+      await expect(client.fetchTopPodcasts()).rejects.toThrowError("Request failed with status code 500");
 
       consoleErrorSpy.mockRestore();
     });
@@ -109,25 +99,19 @@ describe("PodcastsApiClient", () => {
 
       //It checks calls to API
       expect(mockAxios.history.get.length).toBe(1);
-      expect(mockAxios.history.get[0].url).toBe(
-        client.getPodcastsDetailsUrl(mockPodcastId)
-      );
+      expect(mockAxios.history.get[0].url).toBe(client.getPodcastsDetailsUrl(mockPodcastId));
 
       expect(responseExpected).toEqual(mockPodcastDetailsResponseApi.results);
     });
 
     it("should throw an error when fetch posdcastDetails fails", async () => {
-      mockAxios
-        .onGet(client.getPodcastsDetailsUrl(mockPodcastId))
-        .reply(500, { error: "Internal Server Error" });
+      mockAxios.onGet(client.getPodcastsDetailsUrl(mockPodcastId)).reply(500, { error: "Internal Server Error" });
 
-      const consoleErrorSpy = jest
-        .spyOn(console, "error")
-        .mockImplementation(() => "error");
+      const consoleErrorSpy = jest.spyOn(console, "error").mockImplementation(() => "error");
 
-      await expect(
-        client.fetchPodcastDetail(mockPodcastId)
-      ).rejects.toThrowError("Request failed with status code 500");
+      await expect(client.fetchPodcastDetail(mockPodcastId)).rejects.toThrowError(
+        "Request failed with status code 500",
+      );
 
       consoleErrorSpy.mockRestore();
     });

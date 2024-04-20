@@ -8,18 +8,13 @@ interface FilterProps<T> {
   onDataFiltered: (data: T[]) => void;
 }
 
-const Filter = <T extends Record<string, any>>({
-  data,
-  byFields,
-  onDataFiltered,
-}: FilterProps<T>) => {
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+const Filter = <T extends Record<string, any>>({ data, byFields, onDataFiltered }: FilterProps<T>) => {
   const [numberFilter, setnumberFilter] = useState(data.length);
 
   const handleFilter = (valueFilter: string) => {
     const resultFilter = data.filter((dataItem) =>
-      byFields.some((byField) =>
-        dataItem[byField].toLowerCase().includes(valueFilter.toLowerCase())
-      )
+      byFields.some((byField) => dataItem[byField].toLowerCase().includes(valueFilter.toLowerCase())),
     );
     if (valueFilter.length) {
       setnumberFilter(resultFilter.length);
@@ -33,9 +28,9 @@ const Filter = <T extends Record<string, any>>({
     <div className={styles.container}>
       <IconNumber number={numberFilter} />
       <input
-        type="text"
+        type='text'
         className={styles.input}
-        placeholder="Filter podcast..."
+        placeholder='Filter podcast...'
         onChange={(event) => handleFilter(event.target.value)}
       />
     </div>

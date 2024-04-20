@@ -27,8 +27,6 @@ describe("podcastsReponseMapper Test", () => {
   });
 
   it("checks reponse is mapped incorrectly", () => {
-    expect(mapPodcastResponse(responseApiPodcasts)).not.toEqual([
-      { ...resultMap[0], title: "unexpectedTitle" },
-    ]);
+    expect(mapPodcastResponse(responseApiPodcasts)).not.toEqual([{ ...resultMap[0], title: "unexpectedTitle" }]);
   });
 });

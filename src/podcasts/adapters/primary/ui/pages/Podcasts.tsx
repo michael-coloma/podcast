@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import PodcastCard from "../components/PodcastCard";
 import { useTopPodcasts } from "../hooks/useTopPodcasts";
@@ -16,7 +16,6 @@ const Podcasts: React.FC = () => {
       setPodcastsFiltered(podcasts);
     }
   }, [podcasts, isLoading, isError]);
-
   return (
     <>
       <Header isLoading={isLoading} />
@@ -25,32 +24,24 @@ const Podcasts: React.FC = () => {
           <Filter
             data={podcasts}
             byFields={["title", "author"]}
-            onDataFiltered={(podcastsFiltered) =>
-              setPodcastsFiltered(podcastsFiltered)
-            }
+            onDataFiltered={(podcastsFiltered) => setPodcastsFiltered(podcastsFiltered)}
           />
           <div className={styles.podcastsList}>
-            {podcastsFiltered.map(
-              ({ id, title, author, imageUrl, description }) => (
-                <PodcastCard
-                  key={id}
-                  id={id}
-                  title={title}
-                  author={author}
-                  imageUrl={imageUrl}
-                  description={description}
-                />
-              )
-            )}
+            {podcastsFiltered.map(({ id, title, author, imageUrl, description }) => (
+              <PodcastCard
+                key={id}
+                id={id}
+                title={title}
+                author={author}
+                imageUrl={imageUrl}
+                description={description}
+              />
+            ))}
           </div>
         </>
       )}
 
-      {isError && (
-        <>
-          Error: {error instanceof Error ? error.message : "An error occurred"}
-        </>
-      )}
+      {isError && <>Error: {error instanceof Error ? error.message : "An error occurred"}</>}
     </>
   );
 };

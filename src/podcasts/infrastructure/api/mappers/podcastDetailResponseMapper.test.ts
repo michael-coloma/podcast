@@ -1,9 +1,5 @@
 import { podcastDetails } from "../../../core/domain/entities/podcastDetails";
-import {
-  ApiEpisode,
-  ApiPodcastDetail,
-  mapPodcastDetail,
-} from "./podcastDetailReponseMapper";
+import { ApiEpisode, ApiPodcastDetail, mapPodcastDetail } from "./podcastDetailReponseMapper";
 
 const mockApiPodcastDetail: ApiPodcastDetail[] = [
   {
@@ -40,8 +36,6 @@ const mockResultMap: podcastDetails = {
 
 describe("podcastsReponseMapper Test", () => {
   it("checks reponse is mapped correctly", () => {
-    expect(mapPodcastDetail(mockApiPodcastDetail, mockApiEpisode)).toEqual(
-      mockResultMap
-    );
+    expect(mapPodcastDetail(mockApiPodcastDetail, mockApiEpisode)).toEqual(mockResultMap);
   });
 });
