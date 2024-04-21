@@ -5,26 +5,44 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
 import { store } from "./podcasts/adapters/secondary/redux/store";
+import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
+import { persistQueryClient } from "@tanstack/react-query-persist-client";
 
 import "./index.css";
+
+const TIME_CACHE_MS = 1000 * 60 * 60 * 24; // 24 hours
 
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 1000 * 60 * 60 * 24, // 24h until second fetch for update cache with new request
+      staleTime: TIME_CACHE_MS, // 24 hours until second fetch for update cache with new request
+      gcTime: TIME_CACHE_MS,
+      refetchOnWindowFocus: false,
     },
   },
 });
 
-const root = ReactDOM.createRoot(
-  document.getElementById("root") as HTMLElement
-);
+const localStoragePersister = createSyncStoragePersister({
+  key: "PODCASTS_CACHE",
+  storage: window.localStorage,
+});
+
+persistQueryClient({
+  queryClient,
+  persister: localStoragePersister,
+  maxAge: TIME_CACHE_MS,
+  buster: "buildHash",
+});
+
+const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
         <App />
       </Provider>
+      {/*To debug cache */}
+      {/* <ReactQueryDevtools initialIsOpen={false} /> */}
     </QueryClientProvider>
   </React.StrictMode>,
 );
