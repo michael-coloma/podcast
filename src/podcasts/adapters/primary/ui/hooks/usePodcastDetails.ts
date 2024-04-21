@@ -12,7 +12,7 @@ export const usePodcastDetail = (podcastId: string) => {
     isLoading,
     isError,
   } = useQuery({
-    queryKey: ["podcastDetail"],
+    queryKey: ["podcastDetail", `${podcastId}`],
     queryFn: () => getPodcastDetail.execute(podcastId),
   });
 
