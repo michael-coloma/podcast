@@ -11,6 +11,7 @@ export const usePodcastDetail = (podcastId: string) => {
     error,
     isLoading,
     isError,
+    isFetching,
   } = useQuery({
     queryKey: ["podcastDetail", `${podcastId}`],
     queryFn: () => getPodcastDetail.execute(podcastId),
@@ -18,7 +19,7 @@ export const usePodcastDetail = (podcastId: string) => {
 
   return {
     podcastDetails: podcastDetails || null,
-    isLoading,
+    isLoading: isLoading || isFetching,
     error,
     isError,
   };

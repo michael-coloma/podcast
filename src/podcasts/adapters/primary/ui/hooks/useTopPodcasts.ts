@@ -10,16 +10,16 @@ export const useTopPodcasts = () => {
     data: podcasts,
     error,
     isLoading,
+    isFetching,
     isError,
   } = useQuery({
     queryKey: ["topPodcasts"],
     queryFn: () => getTopPodcasts.execute(),
-    // staleTime: 1000 * 60 * 60 * 24
   });
 
   return {
     podcasts: podcasts || [],
-    isLoading,
+    isLoading: isLoading || isFetching,
     error,
     isError,
   };
