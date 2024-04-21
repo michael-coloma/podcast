@@ -1,6 +1,8 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const TerserPlugin = require('terser-webpack-plugin');
+const CssMinimizerPlugin = require('css-minimizer-webpack-plugin');
 
 module.exports = (env, argv) => {
   const isDevelopment = argv.mode === "development";
@@ -10,6 +12,7 @@ module.exports = (env, argv) => {
     output: {
       path: path.resolve(__dirname, "dist"),
       filename: isDevelopment ? "[name].js" : "[name].[contenthash].js",
+      clean: true // Clean directory output per build
     },
     resolve: {
       extensions: [".ts", ".tsx", ".js", ".jsx"],
@@ -53,6 +56,22 @@ module.exports = (env, argv) => {
         },
       ],
     },
+    optimization: {
+      minimizer: [
+        new TerserPlugin({
+          terserOptions: {
+            format: {
+              comments: false, // Delete comments
+            },
+          },
+          extractComments: false,
+        }),
+        new CssMinimizerPlugin(),
+      ],
+      splitChunks: {
+        chunks: 'all',
+      },
+    },
     plugins: [
       new HtmlWebpackPlugin({
         template: "./public/index.html",
@@ -65,13 +84,17 @@ module.exports = (env, argv) => {
     ],
     devServer: {
       static: {
-        directory: path.join(__dirname, "public"), // Serve from the public directory
+        directory: path.join(__dirname, "public"),
       },
       compress: true,
       port: 3000,
       hot: true,
       open: true,
-      historyApiFallback: true, // This ensures that all URLs fall back to index.html, helpful for SPA routing
+      historyApiFallback: true,
+    },
+    performance: {
+      maxAssetSize: 512000,
+      maxEntrypointSize: 512000,
     },
   };
 };
