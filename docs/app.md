@@ -97,6 +97,7 @@ The use cases will be called via a hook on the page where the data infrastructur
 
 According to `vertical slicing`, I am using the directory podcasts with the idea of using the same infrastructure if, in the future, I need to add users, for example. I can create a directory called "users" with similar infrastrutre.
 
+```
 \PODCAST\SRC
 |   AppRouter.tsx
 |   index.css
@@ -187,3 +188,4 @@ According to `vertical slicing`, I am using the directory podcasts with the idea
                     podcastDetailResponseMapper.test.ts
                     podcastsResponseMapper.test.ts
                     podcastsResponseMapper.ts
+```
