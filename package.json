@@ -24,12 +24,14 @@
     "winston": "^3.13.0"
   },
   "scripts": {
-    "lint": "eslint --fix src/",
-    "start": "webpack serve --mode development --open",
+    "preinstall:windows": "if exist node_modules rmdir /s /q node_modules && if exist package-lock.json del package-lock.json",
+    "preinstall:linux": "rm -rf node_modules && rm package-lock.json",
     "build": "webpack --mode production",    
-    "start-production": "webpack --mode production && node scripts/serveProduction",
+    "start": "webpack serve --mode development --open",
+    "start:production": "webpack --mode production && node scripts/serveProduction",
     "test": "jest --verbose --collectCoverage=false --runInBand",
-    "test-coverage": "jest --collectCoverage --runInBand"
+    "test:coverage": "jest --collectCoverage --runInBand",
+    "lint": "eslint --fix src/"
   },
   "eslintConfig": {
     "extends": [

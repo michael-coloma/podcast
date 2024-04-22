@@ -1,47 +1,44 @@
-# Getting Started with Create React App
+# Podcasts test
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Mini application web with typescript and reactJs
 
-## Available Scripts
+## Features
+<dl>
+  <dt>Listing top 100 podcasts from itunes</dt>
+  <dd>it Displays the most popular podcasts with filter by title and author </dd>
 
-In the project directory, you can run:
+  <dt>Displaying podcast details</dt>
+  <dd>It shows information about podcasts with the last 20 episodes</dd>
 
-### `npm start for development mode`
+  <dt>Displaying episode details</dt>
+  <dd>It show description about episode with one player to listen your episode selected </dd>
+</dl>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
 
-See "webpack.config.js" for more information about configuration.
+## Quick start
 
-### `npm run build for production mode`
+1.  Make sure that you have Node.js v20.12.1 and npm v10 or above installed.
+2.  Clone this repo using `git clone https://github.com/michael-coloma/podcast.git <YOUR_PROJECT_NAME>`
+3.  Move to the appropriate directory: `cd <YOUR_PROJECT_NAME>`.<br />
+4.  (optional) Run `npm preinstall:windows`  to delete previous installation.<br />
+    _At this point you can run `npm start` to see the example app at `http://localhost:3000`._
+4.  Run `npm install` in order to install dependencies.<br />    
+5.  Run `npm start` to lauch the application.
 
-Builds the app for production to the `dist` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Now you're ready to rumble!
 
-Open "index.html" to run the application with concatenation and minifying the assets.
 
-See "webpack.config.js" for more information about configuration.
+## Documentation
+- [Your app](docs/app.md): Technologies and Architecture used
+- [**Commands**](docs/commands.md): Commands for podcasts web application
+- [Styling](docs/css.md): How to work with the CSS
+- [Testing](docs/testing.md): How to work with your test.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Author
 
-### `npm run eject`
+Michael Coloma calva
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
