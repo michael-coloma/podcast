@@ -1,11 +1,11 @@
 import React from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import Podcasts from "./pages/Podcasts";
-import { ROUTES_PATH } from "../../../config/routes/routes";
-import PodcastDetail from "./pages/PodcastDetails";
-import EpisodeDetails from "./pages/EpisodeDetails";
+import Podcasts from "./podcasts/adapters/primary/ui/pages/Podcasts";
+import { ROUTES_PATH } from "./podcasts/config/routes/routes";
+import PodcastDetail from "./podcasts/adapters/primary/ui/pages/PodcastDetails";
+import EpisodeDetails from "./podcasts/adapters/primary/ui/pages/EpisodeDetails";
 
-export const PodcastsRouter: React.FC = () => {
+export const AppRouter: React.FC = () => {
   return (
     <Router>
       <Routes>

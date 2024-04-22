@@ -1,6 +1,6 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { PodcastsRouter as App } from "./podcasts/adapters/primary/ui/PodcastsRouter";
+import { AppRouter as App } from "./AppRouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
