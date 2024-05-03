@@ -10,6 +10,7 @@ module.exports = (env, argv) => {
   return {
     entry: "./src/index.tsx",
     output: {
+      publicPath: '/',
       path: path.resolve(__dirname, "dist"),
       filename: isDevelopment ? "[name].js" : "[name].[contenthash].js",
       clean: true // Clean directory output per build
