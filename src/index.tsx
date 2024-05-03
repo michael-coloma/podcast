@@ -4,9 +4,10 @@ import { AppRouter as App } from "./AppRouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import reportWebVitals from "./reportWebVitals";
 import { Provider } from "react-redux";
-import { store } from "./podcasts/adapters/secondary/redux/store";
+import { persistor, store } from "./podcasts/adapters/secondary/redux/store";
 import { createSyncStoragePersister } from "@tanstack/query-sync-storage-persister";
 import { persistQueryClient } from "@tanstack/react-query-persist-client";
+import { PersistGate } from "redux-persist/integration/react";
 
 import "./index.css";
 
@@ -39,7 +40,9 @@ root.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
       <Provider store={store}>
-        <App />
+        <PersistGate loading={null} persistor={persistor}>
+          <App />
+        </PersistGate>
       </Provider>
       {/*To debug cache */}
       {/* <ReactQueryDevtools initialIsOpen={false} /> */}
